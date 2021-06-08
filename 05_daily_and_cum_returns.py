@@ -12,7 +12,6 @@ def compute_daily_returns(df: pd.DataFrame) -> pd.DataFrame:
 
 def compute_cumulative_returns(df: pd.DataFrame) -> pd.DataFrame:
     cum_returns = df.copy()
-    # daily_returns[1:] = (daily_returns[1:] / daily_returns[:-1].values) - 1
     cum_returns = cum_returns / cum_returns.iloc[0] - 1
     cum_returns.iloc[0, :] = 0
     return cum_returns
