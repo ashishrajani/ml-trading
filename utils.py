@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+import numpy as np
 import matplotlib.pyplot as plt
 
 
@@ -63,3 +64,8 @@ def compute_cumulative_returns(df: pd.DataFrame) -> pd.DataFrame:
     cum_returns = cum_returns / cum_returns.iloc[0] - 1
     cum_returns.iloc[0, :] = 0
     return cum_returns
+
+
+def compute_sharpe_ratio(sampling_freq: int, risk_free_rate: float, daily_return: pd.DataFrame) -> pd.DataFrame:
+    daily_return_std = daily_return.std()
+    return np.sqrt(sampling_freq) * ((daily_return.subtract(risk_free_rate)).mean()) / daily_return_std
