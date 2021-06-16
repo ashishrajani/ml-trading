@@ -57,7 +57,7 @@ def optimize_portfolio(starting_investment: float, risk_free_rate: float, sampli
 
 if __name__ == "__main__":
     symbols = ['AAPL', 'XOM', 'IBM', 'PG']
-    start_date = '2020-05-01'
+    start_date = '2020-09-01'
     end_date = '2021-05-31'
     allocations = np.array([0.3, 0.2, 0.4, 0.1])
     start_inv = 100000

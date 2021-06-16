@@ -3,18 +3,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-def get_rolling_mean(df: pd.DataFrame, window_size: int) -> pd.DataFrame:
-    return df.rolling(window_size).mean()
-
-
-def get_rolling_std(df: pd.DataFrame, window_size: int) -> pd.DataFrame:
-    return df.rolling(window_size).std()
-
-
-def get_bollinger_band(rm: pd.DataFrame, rstd: pd.DataFrame) -> (pd.DataFrame, pd.DataFrame):
-    return rm + 2 * rstd, rm - 2 * rstd
-
-
 if __name__ == "__main__":
     symbols = ['SPY']
     window_size = 20
@@ -23,9 +11,9 @@ if __name__ == "__main__":
 
     ax = df['SPY'].plot(title='SPY rolling mean', color="black")
 
-    rm_SPY = get_rolling_mean(df, window_size)
-    rstd_SPY = get_rolling_std(df, window_size)
-    upped_band, lower_band = get_bollinger_band(rm_SPY, rstd_SPY)
+    rm_SPY = utils.get_rolling_mean(df, window_size)
+    rstd_SPY = utils.get_rolling_std(df, window_size)
+    upped_band, lower_band = utils.get_bollinger_band(rm_SPY, rstd_SPY)
 
     rm_SPY.plot(ax=ax, color="red")
     upped_band.plot(ax=ax, color="orange")

@@ -69,3 +69,15 @@ def compute_cumulative_returns(df: pd.DataFrame) -> pd.DataFrame:
 def compute_sharpe_ratio(sampling_freq: int, risk_free_rate: float, daily_return: pd.DataFrame) -> pd.DataFrame:
     daily_return_std = daily_return.std()
     return np.sqrt(sampling_freq) * ((daily_return.subtract(risk_free_rate)).mean()) / daily_return_std
+
+
+def get_rolling_mean(df: pd.DataFrame, window_size: int) -> pd.DataFrame:
+    return df.rolling(window_size).mean()
+
+
+def get_rolling_std(df: pd.DataFrame, window_size: int) -> pd.DataFrame:
+    return df.rolling(window_size).std()
+
+
+def get_bollinger_band(rm: pd.DataFrame, rstd: pd.DataFrame) -> (pd.DataFrame, pd.DataFrame):
+    return rm + 2 * rstd, rm - 2 * rstd
